@@ -1,0 +1,181 @@
+//顏色定義區(橘/灰/深橘)
+$color_orange: #FA8B00
+$color_grey: #f3f3f1
+$color_dark_orange: #EB5E00
+$color_yellow: #FFE18D
+$color_dark_yellow: #FFDA71
+$color_dark_grey: #4F4C4B
+
+//尺寸定義區 (標題/內文/書籤按鈕/書籤icon/老師icon)
+$size_title: 25px
+$size_para: 15px
+$size_bookbtn: 42px
+$size_icon: 22px
+$size_teacher: 55px
+
+//尺寸(課程/上下半部/進度條/預購價/底部橘條)
+$width_class: 260px
+$height_toppart: 160px
+$height_bottompart: 184px
+$height_progressbar: 10px
+$height_pricerow: 22px
+$height_bottomorange: 5px
+
+//尺寸(課程框框的padding)
+$padding_class: 15px
+
+//預設圖片Url
+$url_teacher: "https://hahow.in/images/57ab3d5585b097070042067a"
+$url_class: "https://hahow.in/images/574fab4f206cd60900c52a67?width=300"
+
+@mixin bsha
+  box-shadow: 0 0 12px rgba(0,0,0,0.2)
+  
+*
+  // border: 1px solid
+  position: relative
+  font-family: 微軟正黑體
+  vertical-align: top
+html,body
+  margin: 0
+  padding: 0
+  background-color: $color_grey
+  
+body
+  // padding: 30px
+  
+.classbox
+  width: $width_class
+  background-color: white
+  color: $color_dark_grey
+  border-radius: 5px
+  margin: 30px 15px
+  display: inline-block
+
+  +bsha
+  .teacher
+    width: $size_teacher
+    height: $size_teacher
+    position: absolute
+    left: $padding_class
+    top: -$size_teacher/2
+    border-radius: 50%
+    background-image: url($url_teacher)
+    background-size: cover
+    border: solid 2px white
+    z-index: 9
+  &:hover
+    .bottom 
+      .valuebar
+        width: 200px
+  .top
+    height: $height_toppart
+    overflow: hidden
+    border-radius: 5px 5px 0px 0px
+    &:hover
+      .bookbtn
+        bottom: 10px
+      .classpicture
+        transform: scale(1.13)
+
+    .tag
+      width: 100%
+      text-align: center
+      padding: 5px 0
+      transform: translateX(95px) translateY(15px) rotate(45deg)
+      background-color: $color_dark_orange
+      color: white
+      font-weight: 70
+      +bsha
+    .classpicture
+      width: 100%
+      height: 100%
+      position: absolute
+      left: 0
+      top: 0
+      background-image: url($url_class)
+      background-size: cover
+      transition: 0.3s
+      cursor: pointer
+    .bookbtn
+      width: 42px
+      height: 42px
+      border-radius: 50%
+      left: $padding_class
+      position: absolute
+      bottom: -50px
+      background-color: #fff
+      color: $color_dark_orange
+      cursor: pointer
+      transition: bottom 0.3s
+      +bsha
+      i
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%,-50%)
+        font-size: $size_icon
+      &:hover
+        background-color: $color_dark_orange
+        color: white
+  .bottom
+    height: $height_bottompart
+    padding: $padding_class
+    border-radius: 0px 0px 5px 5px
+    .classtitle
+      margin-top: 0
+      font-size: $size_title
+    .texts
+      font-size: $size_para
+      letter-spacing: 1px
+      .orange
+        padding-left: 5px
+        color: $color_orange
+    .pricerow
+      margin-bottom: 10px
+      .lastday
+        position: absolute
+        padding: 0
+        right: 0
+        top: 0
+    .nowpeople
+      text-align: center
+    .progressbar
+      height: 10px
+      margin-bottom: 10px
+      background-color: darken($color_grey,9)
+      border-radius: 5px
+      overflow: hidden
+      .valuebar
+        height: 100%
+        width: 100px
+        background-color: $color_orange
+        border-radius: 5px 0px 0px 5px
+    .orangebar
+      height: $height_bottomorange
+      width: 100%
+      position: absolute
+      bottom: 0
+      left: 0
+      background-color: $color_dark_orange
+      border-radius: 0px 0px 5px 5px
+      
+#app
+  max-width: 1200px
+  margin-right: auto
+  margin-left: auto
+  
+.navbar
+  height: 400px
+  background: linear-gradient(-45deg,$color_yellow 10%,$color_yellow 10%,$color_dark_yellow 10%,$color_dark_yellow 40%,$color_yellow 40%,$color_yellow 60%,$color_dark_yellow 60%,$color_dark_yellow 90%,$color_yellow 90%,$color_yellow 100%)
+  background-size: 46px 46px
+  margin-bottom: 30px
+  .info
+    +bsha
+    padding: 20px
+    width: 1024px
+    background-color: #fff
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%,-50%)
